@@ -26,47 +26,6 @@ def file_sort():
 
 
 def file_sort_pro():
-    """
-    排序后，排序字段相同的值，作为要处理的文件块进行处理
-    :return:
-    71102009	4
-    71102113	2
-    71102113	3
-    71303034	18
-    71303034	18
-    71303034	18
-
-    """
-    with open(w_file, 'r', encoding='utf-8', errors='ignore')as rf, \
-            open(w_file2, 'a', encoding='utf-8', errors='ignore')as wf:
-        temp_res = []
-        flag_set = set()
-        for line in rf:
-            print(line)
-            line_split = line.split('\t')
-            code = line_split[0].strip()
-            count = line_split[1]
-            if len(line_split) > 1:
-                if code in flag_set:
-                    temp_res.append(line)
-                if code not in flag_set:
-                    flag_set.clear()
-                    temp_res.clear()
-                    flag_set.add(code)
-                    temp_res.append(line)
-                    print(code)
-                    print(flag_set)
-
-                else:
-                    print("---------", temp_res)
-
-                    temp_res = []
-                    flag_set.clear()
-            # if len(temp_res)>0:
-            #     print(temp_res)
-
-
-def file_sort_pro2():
     path = r'E:\dataset\test1\test2_sort.txt'
     with open(path, 'r', encoding='utf-8') as rf:
         res = []
@@ -80,12 +39,12 @@ def file_sort_pro2():
                 if filed in flag_set:
                     res.append(filed)
                 else:
+                    # 防止首行未被处理
                     if len(flag_set) != 0:
                         print(res)  # 处理
                         res = []
                         flag_set = set()
 
-                    # 防止首行未被处理
                     res.append(filed)
                     flag_set.add(filed)
 
@@ -96,4 +55,4 @@ def file_sort_pro2():
 
 if __name__ == '__main__':
     # file_sort()
-    file_sort_pro2()
+    file_sort_pro()
