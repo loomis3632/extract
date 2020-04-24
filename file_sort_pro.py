@@ -58,39 +58,40 @@ def file_sort_pro():
                     print(flag_set)
 
                 else:
-                    print("---------",temp_res)
+                    print("---------", temp_res)
 
                     temp_res = []
                     flag_set.clear()
             # if len(temp_res)>0:
             #     print(temp_res)
+
+
 def file_sort_pro2():
     path = r'E:\dataset\test1\test2_sort.txt'
     with open(path, 'r', encoding='utf-8') as rf:
         res = []
-        mail_set = set()
+        flag_set = set()
         print(rf)
 
         for ele in rf:
             ele_split = ele.split('\t')
             if len(ele_split) > 1:
-                mail = ele_split[0].strip() #处理基础的字段
-                if mail in mail_set:
-                    res.append(mail)
+                filed = ele_split[0].strip()  # 处理基础的字段
+                if filed in flag_set:
+                    res.append(filed)
                 else:
-                    # 防止首行未被处理
-                    if len(mail_set) != 0:
-                        print(res)
+                    if len(flag_set) != 0:
+                        print(res)  # 处理
                         res = []
-                        mail_set = set()
+                        flag_set = set()
 
-                    res.append(mail)
-                    mail_set.add(mail)
-        # 最后一行或者几行的处理
+                    # 防止首行未被处理
+                    res.append(filed)
+                    flag_set.add(filed)
+
+        # 最后一个字段的处理
         if len(res) != 0:
-            # 此处可以对进行邮箱相同的行进行处理。
-            print(res)
-
+            print(res)  # 处理
 
 
 if __name__ == '__main__':
